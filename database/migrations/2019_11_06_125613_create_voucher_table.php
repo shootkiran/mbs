@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserContactsTable extends Migration
+class CreateVoucherTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateUserContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_contacts', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('filename');
+            $table->integer('registration_id');
             $table->integer('user_id');
-            $table->integer('number')->length('55');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateUserContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_contacts');
+        Schema::dropIfExists('voucher');
     }
 }
