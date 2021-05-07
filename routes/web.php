@@ -1,0 +1,60 @@
+<?php
+
+use App\Http\Controllers\AdmitcardController;
+use App\Http\Controllers\CitizenshipController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PassportController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ResultController;
+use App\Http\Controllers\UserContactController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRegistrationController;
+use App\Http\Controllers\VenueController;
+use App\Http\Controllers\WebsiteController;
+use Illuminate\Support\Facades\Route;
+
+
+Route::get('/', [WebsiteController::class,'nattest'])->name('web.home');
+Auth::routes();
+Route::get('/registration/getdata/{level}', [RegistrationController::class,'getData']);
+Route::get('/registration/level/{level}', [RegistrationController::class,'getLevel']);
+Route::get('/registration/ajaxupdate', [RegistrationController::class,'ajaxUpdate']);
+Route::resource('home', HomeController::class);
+Route::get('/registration/temp', [RegistrationController::class,'temp'])->name('registration.temp');
+Route::get('/registration/ajaxreg', [RegistrationController::class,'ajaxRegistration'])->name('registrations.ajaxreg');
+Route::get('/registration/createfromcollection/{collection_id}', [RegistrationController::class,'createFromCollection'])->name('registrations.createfromcollection');
+Route::post('/registration/createfromcollection/{collection_id}', [RegistrationController::class,'storeFromSingleCollection'])->name('registration.storeSingleNew');
+Route::get('/registration/dummy/{collection_id}', [RegistrationController::class,'dummy'])->name('registration.dummy');
+Route::resource('/registration', RegistrationController::class);
+Route::post('/result/search', [ResultController::class,'search'])->name('result.search');
+Route::resource('/result', ResultController::class);
+Route::resource('/userregistration', UserRegistrationController::class);
+Route::resource('/userregistration/{userRegistration}/citizenship', CitizenshipController::class);
+Route::resource('/userregistration/{userRegistration}/passport', PassportController::class);
+Route::resource('/userregistration/{userRegistration}/photo', PhotoController::class);
+Route::resource('/userregistration/{userRegistration}/payment', PaymentController::class);
+Route::resource('/user', UserController::class);
+Route::get('/payment/edit/{payment}', [PaymentController::class,'verify'])->name('payment.verify');
+Route::resource('/examination', ExaminationController::class);
+Route::resource('/venue', VenueController::class);
+Route::get('/collection/sync', [CollectionController::class,'sync'])->name('collection.sync');
+Route::get('/collection/{id}/refund', [CollectionController::class,'refund'])->name('collection.refund');
+Route::post('/collection/search', [CollectionController::class,'search'])->name('collection.search');
+Route::post('/registration/search', [RegistrationController::class,'search'])->name('registration.search');
+Route::get('/collection/single', [CollectionController::class,'createSingle'])->name('collection.createSingle');
+Route::post('/collection/single', [CollectionController::class,'storeSingle'])->name('collection.storeSingle');
+Route::get('/collection/refunded', [CollectionController::class,'refunded'])->name('collection.refunded');
+Route::resource('notice', NoticeController::class);
+Route::resource('/collection', CollectionController::class);
+Route::resource('/log', LogController::class);
+Route::get('/management/userregistrations', [ManagementController::class,'userRegistrations'])->name('management.userregistrations');
+Route::resource('/usercontact', UserContactController::class);
+Route::resource('/admitcard', AdmitcardController::class);
+
