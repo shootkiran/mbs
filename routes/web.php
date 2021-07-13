@@ -1,24 +1,40 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', function (){
+return redirect()->to('/web');})->name('web.home');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/registration/getdata/{level}', 'RegistrationController@getData');
+Route::get('/registration/level/{level}', 'RegistrationController@getLevel');
+Route::get('/registration/ajaxupdate', 'RegistrationController@ajaxUpdate');
+Route::resource('home', 'HomeController');
+Route::resource('test', 'TestController');
+Route::get('/registration/temp', 'RegistrationController@temp')->name('registration.temp');
+Route::get('/registration/ajaxreg', 'RegistrationController@ajaxRegistration')->name('registrations.ajaxreg');
+Route::get('/registration/createfromcollection/{collection_id}', 'RegistrationController@createFromCollection')->name('registrations.createfromcollection');
+Route::post('/registration/createfromcollection/{collection_id}', 'RegistrationController@storeFromSingleCollection')->name('registration.storeSingleNew');
+Route::get('/registration/dummy/{collection_id}', 'RegistrationController@dummy')->name('registration.dummy');
 Route::resource('/registration', 'RegistrationController');
+Route::post('/result/search', 'ResultController@search')->name('result.search');
+Route::resource('/result', 'ResultController');
+Route::resource('/userregistration', 'UserRegistrationController');
+Route::resource('/userregistration/{userRegistration}/citizenship', 'CitizenshipController');
+Route::resource('/userregistration/{userRegistration}/passport', 'PassportController');
+Route::resource('/userregistration/{userRegistration}/photo', 'PhotoController');
+Route::resource('/userregistration/{userRegistration}/payment', 'PaymentController');
 Route::resource('/user', 'UserController');
-Route::resource('/photo', 'PhotoController');
+Route::get('/payment/edit/{payment}', 'PaymentController@verify')->name('payment.verify');
+Route::resource('/examination', 'ExaminationController');
 Route::resource('/venue', 'VenueController');
+Route::get('/collection/sync', 'CollectionController@sync')->name('collection.sync');
+Route::get('/collection/{id}/refund', 'CollectionController@refund')->name('collection.refund');
+Route::post('/collection/search', 'CollectionController@search')->name('collection.search');
+Route::post('/registration/search', 'RegistrationController@search')->name('registration.search');
+Route::get('/collection/single', 'CollectionController@createSingle')->name('collection.createSingle');
+Route::post('/collection/single', 'CollectionController@storeSingle')->name('collection.storeSingle');
+Route::get('/collection/refunded', 'CollectionController@refunded')->name('collection.refunded');
+Route::resource('notice','NoticeController');
+Route::resource('/collection', 'CollectionController');
+Route::resource('/log', 'LogController');
+Route::get('/management/userregistrations', 'ManagementController@userRegistrations')->name('management.userregistrations');
+Route::get('/management/userregistrations/print','ManagementController@userRegistrationPrint');
+Route::resource('/usercontact', 'UserContactController');
+Route::resource('/admitcard', 'AdmitcardController');

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','dobad','type_id'
+        'name', 'email', 'password', 'dobad', 'type_id'
     ];
 
     /**
@@ -36,13 +36,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function Registration(){
-    	return $this->hasMany('\App\Registration');
+
+    public function UserRegistration()
+    {
+        return $this->hasMany(UserRegistration::class);
     }
-    public function Contact(){
-    	return $this->hasMany('\App\UserContact');
+
+    public function Contact()
+    {
+        return $this->hasMany(UserContact::class);
     }
-    public function Photo(){
-        return $this->hasOne('\App\Photo');
+
+    public function Photo()
+    {
+        return $this->hasOne(Photo::class);
+    }
+
+    public function Payments()
+    {
+        $uregs = $this->UserRegistration()->pluck('id');
+        $payments = Payment::whereIn('user_registration_id', $uregs);
+        return $payments;
+    }
+
+    public function Examination()
+    {
+        return $this->belongsTo(Examination::class);
     }
 }

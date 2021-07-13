@@ -8,9 +8,9 @@
     <meta name="generator" content="comingsoonpage.com 1.0.0" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="http://" />
+    <meta property="og:url" content="http://eastwestmc.com.np" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="New Page" />
+    <meta property="og:title" content="Ease West Management Center" />
     <meta property="og:description" content="" />
 
     <!-- Font Awesome CSS -->
@@ -18,19 +18,7 @@
 
     <!-- Bootstrap and default Style -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://static.comingsoonpage.com/cspio-assets/1.0.0/style.css">
-
-
-
-    <!-- Google Fonts -->
-
-
-    <!-- RTL -->
-
-
-
-
-
+    <link rel="stylesheet" href="{{asset('css/cspio/style.css')}}">
 
     <!-- Calculated Styles -->
     <style type="text/css">
@@ -41,7 +29,7 @@
         /* Background Style */
         html{
             height:100%;
-            background: #ffffff url(https://images.unsplash.com/photo-1449942120512-7a6f1ea6b0c4?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1600&fit=max&s=706a9e5b55edb08136a0df41ac0eaf56) no-repeat center bottom fixed;
+            background: #ffffff url('{{config('app.url')}}/resources/img/bg.jpg') no-repeat center bottom fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -266,7 +254,6 @@
         }
 
         .cspio body{
-            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+7,000000+100&0+80,0.23+100 */
             background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 7%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.23) 100%); /* FF3.6-15 */
             background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 7%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.23) 100%); /* Chrome10-25,Safari5.1-6 */
             background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 7%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.23) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -301,77 +288,20 @@
             border: 1px solid #fff;
         }
 
-
-
-
     </style>
-    <!-- JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- FitVid -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
-    <!-- Scripts -->
-    <script src="https://static.comingsoonpage.com/cspio-assets/1.0.0/scripts.js"></script>
-    <!-- Modernizr -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <!-- Retina JS -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>-->
-    <!-- Tubular -->
-
-
-    <!-- Header Scripts -->
-
-    <!-- Google Analytics -->
 </head>
 <body>
 <div id="cspio-page">
     <div id="cspio-content">
-        <img id="cspio-logo" src="https://static.comingsoonpage.com/9951/SkVq7OOWRo2GswjLDPvJ_37i8gmuXSkWdo2vdhkcb_logo.png">
+        <img id="cspio-logo" src="{{asset('img/logo.png')}}">
 
         <h1 id="cspio-headline">Coming Soon</h1>
         <div id="cspio-description">Get ready! Something really cool is coming!</div>
-        <div id="cspio-description">Login Panel For Test Registration is <a href="/home">Here.</a></div>
+        <div id="cspio-description">Login Panel For Test Registration is <a href="{{route('home.index')}}">Here.</a></div>
 
 
 
-
-
-
-
-    </div><!-- end of #seed-cspio-content -->
-    <!-- This attribution is required to use this page under our free license. -->
-    <div id="cspio-credit" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;">
-				<span><a target="_blank" href="https://www.comingsoonpage.com">Coming Soon Page</a> by <a target="_blank" href="https://www.comingsoonpage.com"><img id="aff" src="https://static.comingsoonpage.com/cspio-assets/1.0.0/comingsoonpage.com-logo.png"/></a>
     </div>
 </div>
-
-<script>jQuery(document).ready(function($){$("#cspio-description,#cspio-thankyoumsg").fitVids();});</script>
-
-<!-- Animate -->
-
-
-
-<script>
-    function resize(){
-        $('head').append("<style id='form-style' type='text/css'></style>");
-        $('#form-style').html('.cspio .input-group-btn, .cspio .input-group{display:block;width:100%;}.cspio #cspio-subscribe-btn{margin-left:0;width:100%;display:block;}.cspio .input-group .form-control:first-child, .cspio .input-group-addon:first-child, .cspio .input-group-btn:first-child>.btn, .cspio .input-group-btn:first-child>.dropdown-toggle, .cspio .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {border-bottom-right-radius: 4px;border-top-right-radius: 4px;}.cspio .input-group .form-control:last-child, .cspio .input-group-addon:last-child, .cspio .input-group-btn:last-child>.btn, .cspio .input-group-btn:last-child>.dropdown-toggle, .cspio .input-group-btn:first-child>.btn:not(:first-child) {border-bottom-left-radius: 4px;border-top-left-radius: 4px;}');
-    }
-
-    $('#cspio-content').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-            var width = $('#cspio-field-wrapper').width();
-            //console.log(width);
-            if(width < 480 && width != 0){
-                resize();
-            }
-        }
-    );
-</script>
-
-
-
-
-
 </body>
 </html>
-
-
-<!-- This page was generated by ComingSoonPage.com | Learn more: http://www.comingsoonpage.com -->

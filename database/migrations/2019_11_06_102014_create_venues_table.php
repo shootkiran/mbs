@@ -13,10 +13,7 @@ class CreateVenuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('venues', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('gps');
+        Schema::table('venues', function (Blueprint $table) {
             $table->timestamps();
         });
     }

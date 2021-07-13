@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-    protected $fillable = [''];
+    protected $fillable = ['name', 'dobad', 'level', 'reg_number', 'collection_id', 'payment_id', 'payment_received', 'examination_id', 'user_id'];
+
     //
-	public function User(){
-        return $this->belongsTo('\App\User');
-	}
-	public function Examination(){
-		return $this->belongsTo('\App\Examination','test_id');
-	}
-	public function Photo(){
-        return  $this->belongsTo('\App\Photo');
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function Venue()
+    {
+        return $this->belongsTo(Venue::class);
+    }
+
+    public function Examination()
+    {
+        return $this->belongsTo(Examination::class);
     }
 
 }

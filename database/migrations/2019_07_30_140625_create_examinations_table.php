@@ -15,11 +15,6 @@ class CreateExaminationsTable extends Migration
     {
         Schema::create('examinations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('exam_date');
-            $table->string('available');
-            $table->string('deadline');
-            $table->string('venue_id');
             $table->timestamps();
         });
     }

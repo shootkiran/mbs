@@ -7,17 +7,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>EAST WEST MANAGEMENT CENTER</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+ -->
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <script src="{{asset('/js/jquery-3.3.1.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
 </head>
 <body>
 <div id="app">
@@ -25,10 +29,11 @@
         <div class="container">
 
 
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+            <a class="navbar-brand" href="{{route('home.index')}}">
+                East West Management Center
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,8 +57,51 @@
                         </li>
                     @endif
                     @else
+                        @if(Auth::user()->type_id==2)
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('home.index')}}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('userregistration.index')}}">My Registrations</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->type_id==3)
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Excel Data<span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @for ($i = 5; $i > 0; $i--)
+
+                                        <a class="dropdown-item" href="/registration/getdata/{{$i}}">Level{{$i}}</a>
+
+                                    @endfor
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{route('management.userregistrations')}}">userregistrations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('registration.index')}}">Registrations</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Collections<span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('collection.index')}}">All Collections</a>
+                                    <a class="dropdown-item" href="{{route('collection.refunded')}}">Refunded Collections</a>
+                                </div>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -64,7 +112,8 @@
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
                                     @csrf
                                 </form>
                             </div>
@@ -86,5 +135,10 @@
         </div>
     </main>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tabletest').DataTable();
+    });
+</script>
 </body>
 </html>

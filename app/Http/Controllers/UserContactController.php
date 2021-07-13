@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserContact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserContactController extends Controller
 {
@@ -14,7 +15,12 @@ class UserContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = UserContact::all();
+        foreach($contacts as $contact){
+            $new =str_replace("-","",str_replace("+977","",str_replace(" ","",$contact->number)));
+            $contact->number = $new;
+            $contact->save();
+        }
     }
 
     /**
@@ -24,7 +30,8 @@ class UserContactController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('usercontact.create',compact('user'));
     }
 
     /**
@@ -35,7 +42,9 @@ class UserContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $number =str_replace("+977","",str_replace(" ","",$request->number));
+        UserContact::create(['contact_type'=>$request->contact_type,'number'=>$number,'user_id'=>$request->user()->id]);
+        return redirect('home');
     }
 
     /**
